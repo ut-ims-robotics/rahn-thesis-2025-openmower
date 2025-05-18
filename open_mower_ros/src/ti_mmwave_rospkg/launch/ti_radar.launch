@@ -23,7 +23,7 @@
       <node pkg="ti_mmwave_rospkg" type="mmWaveQuickConfig" name="mmWaveQuickConfig" 
             args="$(find ti_mmwave_rospkg)/cfg/1843AOP/1843AOP_shortRange_30fps.cfg" output="$(arg log_output)"/>
 
-      <!-- 2. the actual radar node -->
+      <!-- 2. the actual radar node, KARL - CHANGE THE PORTS/MUUDA PORDID! -->
       <node pkg="ti_mmwave_rospkg" type="ti_mmwave_rospkg" name="ti_mmwave" output="$(arg log_output)">
         <param name="command_port" value="/dev/ttyXRUSB0"/>
         <param name="command_rate" value="115200"/>
