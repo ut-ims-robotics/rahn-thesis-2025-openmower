@@ -1,0 +1,1 @@
+cmd_/home/openmower/open_mower_ros/src/xr_usb_serial/built-in.a := rm -f /home/openmower/open_mower_ros/src/xr_usb_serial/built-in.a; ar cDPrST /home/openmower/open_mower_ros/src/xr_usb_serial/built-in.a 

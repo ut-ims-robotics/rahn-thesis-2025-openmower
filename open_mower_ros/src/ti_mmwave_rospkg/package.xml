@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>ti_mmwave_rospkg</name>
+  <version>3.5.0</version>
+  <description>The ti_mmwave_rospkg package. (TI > Leo Zhang > ASL)</description>
+  <maintainer email="nobody@nowhere.com">ASL Team</maintainer>
+  <license>BSD</license>
+  <url type="website">https://github.com/ethz-asl/ti_mmwave_rospkg</url>
+  <author email="nobody@nowhere.com">ASL Team</author>
+
+  <!-- Dependencies can be catkin packages or system dependencies -->
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>nodelet</depend>
+  <depend>roscpp</depend>
+  <depend>serial</depend>
+  <depend>std_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>message_generation</depend>
+  <depend>pcl_ros</depend>
+  <depend>roslint</depend>
+
+  <!-- The export tag contains other, unspecified, tags -->
+  <export>
+    <nodelet plugin="${prefix}/mmWave_nodelets.xml" />
+  </export>
+
+</package>
