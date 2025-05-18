@@ -1,0 +1,14 @@
+<launch>
+  <!-- Launch the TI mmWave radar (make sure paths & ports are correct) -->
+  <include file="$(find ti_mmwave_rospkg)/launch/ti_radar.launch" />
+
+  <!-- Launch your radar obstacle detection node -->
+  <node name="radar_obstacle_detection_v2"
+        pkg="open_mower_radar_integration"
+        type="radar_obstacle_detection_v2"
+        output="screen">
+    <param name="min_obstacle_distance" value="2.0"/>
+    <param name="trigger_emergency" value="false"/>
+  </node>
+</launch>
+

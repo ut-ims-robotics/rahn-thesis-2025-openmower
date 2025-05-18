@@ -1,0 +1,13 @@
+{
+  "type": "InputService",
+  "version": 1,
+  "inputs": [],
+  "outputs": [],
+  "registers": [
+    {
+      "id": 0,
+      "name": "Input Configs",
+      "type": "blob"
+    }
+  ]
+}

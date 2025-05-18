@@ -1,0 +1,19 @@
+{
+  "inputs": [],
+  "outputs": [
+    {
+      "id": 0,
+      "name": "Axes",
+      "type": "double[9]"
+    }
+  ],
+  "registers": [
+    {
+      "id": 0,
+      "name": "AxisRemap",
+      "type": "int8_t[3]"
+    }
+  ],
+  "type": "ImuService",
+  "version": 1
+}

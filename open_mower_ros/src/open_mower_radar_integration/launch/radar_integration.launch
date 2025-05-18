@@ -1,0 +1,7 @@
+<launch>
+  <node name="radar_obstacle_detection"
+        pkg="open_mower_radar_integration"
+        type="radar_obstacle_detection"
+        output="screen" />
+</launch>
+
