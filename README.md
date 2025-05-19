@@ -37,3 +37,7 @@ This bachelor's thesis focuses on the integration of a millimeter-wave radar sen
 - Discord server -> https://discord.gg/Hp7qyQe9
 - Open Mower github -> https://github.com/ClemensElflein/OpenMower
 - Open Mower Patreon -> https://www.patreon.com/ClemensElflein
+
+## Bakalaureusetöö dokument / Bachelor thesis document (TODO/TBD!)
+
+## Tänuavaldused / Expressions of gratidude (TODO)
