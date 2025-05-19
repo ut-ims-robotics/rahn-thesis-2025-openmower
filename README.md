@@ -25,7 +25,7 @@ This bachelor's thesis focuses on the integration of a millimeter-wave radar sen
 - Ubuntu 20.04 (Linux) -> https://releases.ubuntu.com/focal/
 - RTK-GNSS (Ardusimple F9P) -> https://www.ardusimple.com/product/simplertk2b-basic-starter-kit-ip65/
 - D3 Engineering + Texas Instruments mmWave radar (D3 Engineering RS1843AOPU) -> https://www.d3embedded.com/product/designcore-rs-1843aopu-mmwave-radar-sensor/
-- Open Mower avatud platvorm / Open Mower open-source platform - https://openmower.de/
+- Open Mower open-source platform - https://openmower.de/
 - OnShape CAD -> https://www.onshape.com/en/
 - u-blox u-center -> https://www.u-blox.com/en/product/u-center
 - ti_mmWave Visualizer -> https://dev.ti.com/gallery/view/mmwave/mmWave_Demo_Visualizer/ver/3.6.0/
