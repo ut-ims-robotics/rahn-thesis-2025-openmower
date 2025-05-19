@@ -49,5 +49,5 @@ This bachelor's thesis focuses on the integration of a millimeter-wave radar sen
 - ChatGPT artificial intelligence tool for the correctness and refinement of the thesis document.
 
 **Karl Rahn**  
-University of Tartu, [Institute of Technology, Computer Engineering]  
+University of Tartu, Institute of Technology, Computer Engineering  
 2025
