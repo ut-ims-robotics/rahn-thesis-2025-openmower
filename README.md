@@ -35,6 +35,7 @@ This bachelor's thesis focuses on the integration of a millimeter-wave radar sen
 - ti_mmWave Visualizer -> https://dev.ti.com/gallery/view/mmwave/mmWave_Demo_Visualizer/ver/3.6.0/
 
 ## Reference links for Open Mower
+- Documenatation page -> https://openmower.de/
 - Discord server -> https://discord.gg/Hp7qyQe9
 - Open Mower github -> https://github.com/ClemensElflein/OpenMower
 - Open Mower Patreon -> https://www.patreon.com/ClemensElflein
