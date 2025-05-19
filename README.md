@@ -47,3 +47,7 @@ This bachelor's thesis focuses on the integration of a millimeter-wave radar sen
 - My thesis supervisor, for guidance, teaching and advice throughout the work
 - Open Mower community for teaching, guidance
 - ChatGPT artificial intelligence tool for the correctness and refinement of the thesis document.
+
+**Karl Rahn**  
+University of Tartu, [Institute of Technology, Computer Engineering]  
+2025
