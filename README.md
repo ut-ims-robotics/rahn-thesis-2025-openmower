@@ -11,10 +11,13 @@ This bachelor's thesis focuses on the integration of a millimeter-wave radar sen
 
 /open_mower_radar_integration/ – ROS-pakett radarite jaoks / ROS package for radar integration
 
-## ⚙Kasutatud tehnoloogiad / Technologies Used
+## Kasutatud tehnoloogiad / Technologies Used
 
 - ROS Noetic (Robot Operating System)
 - Ubuntu 20.04 (Linux)
 - RTK-GNSS (Ardusimple F9P)
 - Texas Instruments mmWave radar (D3 Engineering RS1843AOPU)
 - Open Mower avatud platvorm / Open Mower open-source platform
+- OnShape CAD
+- u-center v25.03
+- ti_mmWave Visualizer
