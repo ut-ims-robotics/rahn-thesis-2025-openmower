@@ -6,6 +6,10 @@
 
 This bachelor's thesis focuses on the integration of a millimeter-wave radar sensor (mmWave) into the Open Mower platform – an open-source autonomous robotic lawnmower. The goal is to enhance the robot’s autonomy and safety by enabling real-time obstacle detection.
 
+### 3D-models for portable base station and mmwave enclosure
+- These can be found under step_models.zip or step_models.tar. Feel free to use and edit them :)
+
+### Packages used
 - lib/ # External/shared libraries
 - mower_comms_v1/ # Legacy communication package
 - mower_comms_v2/ # Updated mower communication interface
