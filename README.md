@@ -41,4 +41,8 @@ This bachelor's thesis focuses on the integration of a millimeter-wave radar sen
 
 ## Bachelor thesis document (TODO/TBD!)
 
-## Expressions of gratidude (TODO)
+
+## Expressions of gratidude
+- My thesis supervisor, for guidance, teaching and advice throughout the work
+- Open Mower community for teaching, guidance
+- ChatGPT artificial intelligence tool for the correctness and refinement of the thesis document.
