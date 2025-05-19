@@ -3,6 +3,8 @@
 
 ## Ülevaade / Overview
 
+![IMG_20250519_164715](https://github.com/user-attachments/assets/bb0fcd7a-072e-48c4-9725-0293424676ff)
+
 **ET:**  
 See bakalaureusetöö keskendub millimeeterlaine radari (mmWave) lisamisele Open Moweri platvormile – avatud lähtekoodiga autonoomsele robotmuruniidukile. Töö eesmärk on suurendada roboti autonoomsust ja ohutust, võimaldades takistuste reaalajas tuvastamist.
 
