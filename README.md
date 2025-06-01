@@ -41,7 +41,7 @@ This bachelor's thesis focuses on the integration of a millimeter-wave radar sen
 - Open Mower Patreon -> https://www.patreon.com/ClemensElflein
 
 ## Bachelor thesis document (TBD whether it is allowed here :) )
-
+[Rahn_BSc2025.pdf](https://github.com/user-attachments/files/20542737/Rahn_BSc2025.pdf)
 
 ## Expressions of gratidude
 - My thesis supervisor, for guidance, teaching and advice throughout the work
@@ -51,3 +51,4 @@ This bachelor's thesis focuses on the integration of a millimeter-wave radar sen
 **Karl Rahn**  
 University of Tartu, Institute of Technology, Computer Engineering  
 2025
+
