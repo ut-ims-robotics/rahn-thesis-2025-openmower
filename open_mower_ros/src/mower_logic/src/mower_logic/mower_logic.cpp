@@ -99,11 +99,22 @@ ros::Time last_rain_check;
 bool rain_detected = true;
 ros::Time rain_resume;
 
-bool last_radar_detection_state = false;
+ros::Time last_obstacle_time(0.0);          // viimane TRUE sõnum radarilt
+std::atomic<bool> obstacle_active{false};   // kas robot on hetkel radari-pausis
 
 /**
  * Some thread safe methods to get a copy of the logic state
  */
+// Thread-safe ligipääs — GPS-i eeskujul
+ros::Time getLastObstacle() {
+  std::lock_guard<std::recursive_mutex> lk{mower_logic_mutex};
+  return last_obstacle_time;
+}
+void setLastObstacle(const ros::Time& t) {
+  std::lock_guard<std::recursive_mutex> lk{mower_logic_mutex};
+  last_obstacle_time = t;
+}
+
 ros::Time getLastGoodGPS() {
   std::lock_guard<std::recursive_mutex> lk{mower_logic_mutex};
   return last_good_gps;
@@ -143,6 +154,35 @@ xbot_msgs::AbsolutePose getPose() {
 }
 
 void setEmergencyMode(bool emergency);
+
+void handleRadarDetection(bool obstacle_now)
+{
+  // Radar = TRUE  → kohe paus
+  if (obstacle_now) {
+    setLastObstacle(ros::Time::now());
+
+    if (!obstacle_active) {                 // esimene tuvastus
+      obstacle_active = true;
+      ROS_WARN("[mower_logic] Radar obstacle detected → PAUSE!");
+      mowerAllowed = false;                 // terad seisma
+      stopMoving();                         // kohene pidur
+      if (currentBehavior)
+        currentBehavior->requestPause(pauseType::PAUSE_OBSTACLE);
+    }
+    return;                                 // paus püsib
+  }
+
+  // 2) Radar = FALSE → vabasta alles 3 s pärast viimast TRUE olekut
+  if (obstacle_active &&
+      (ros::Time::now() - getLastObstacle()) > ros::Duration(3.0))
+  {
+    obstacle_active = false;
+    ROS_INFO("[mower_logic] Radar obstacle cleared (3 s) → RESUME");
+    if (currentBehavior)
+      currentBehavior->requestContinue(pauseType::PAUSE_OBSTACLE);
+  }
+}
+
 
 void registerActions(std::string prefix, const std::vector<xbot_msgs::ActionInfo> &actions) {
   xbot_msgs::RegisterActionsSrv srv;
@@ -402,7 +442,9 @@ void checkSafety(const ros::TimerEvent &timer_event) {
   const auto status_time = status_state_subscriber.getMessageTime();
   const auto power_time = power_state_subscriber.getMessageTime();
   const auto last_good_gps = getLastGoodGPS();
-  const auto radar_detection = radar_obstacle_subscriber.getMessage();
+  const auto radar_detection = radar_obstacle_subscriber.getMessage(); // Loeb sõnumit subscriberilt
+  handleRadarDetection(radar_detection.data); // Eraldi funktsioon, mis loeb ja vaatab, kas on vaja pausi või mitte.
+
 
   high_level_status.emergency = last_emergency.latched_emergency;
   high_level_status.is_charging = last_power.v_charge > 10.0;
@@ -437,17 +479,6 @@ void checkSafety(const ros::TimerEvent &timer_event) {
         5, "om_mower_logic: EMERGENCY pose values stopped. dt was: " << (ros::Time::now() - pose_time));
     return;
   }
-
-   // For detection, wheter it is cleared or not
-   if (radar_detection.data != last_radar_detection_state) {
-   	if (radar_detection.data) {
-        	ROS_WARN("[mower_logic] Radar obstacle detected! Stopping mower.");
-    	} else {
-        	ROS_INFO("[mower_logic] Radar obstacle cleared. Resuming operation.");
-    	}
-    	last_radar_detection_state = radar_detection.data;
-   }
-
 
   // check if status is current. if not, we have a problem since it contains wheel ticks and so on.
   // Since these should never drop out, we enter emergency instead of "only" stopping
