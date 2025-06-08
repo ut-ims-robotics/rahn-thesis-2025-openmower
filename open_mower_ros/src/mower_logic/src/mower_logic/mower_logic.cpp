@@ -155,35 +155,6 @@ xbot_msgs::AbsolutePose getPose() {
 
 void setEmergencyMode(bool emergency);
 
-void handleRadarDetection(bool obstacle_now)
-{
-  // Radar = TRUE  → kohe paus
-  if (obstacle_now) {
-    setLastObstacle(ros::Time::now());
-
-    if (!obstacle_active) {                 // esimene tuvastus
-      obstacle_active = true;
-      ROS_WARN("[mower_logic] Radar obstacle detected → PAUSE!");
-      mowerAllowed = false;                 // terad seisma
-      stopMoving();                         // kohene pidur
-      if (currentBehavior)
-        currentBehavior->requestPause(pauseType::PAUSE_OBSTACLE);
-    }
-    return;                                 // paus püsib
-  }
-
-  // 2) Radar = FALSE → vabasta alles 3 s pärast viimast TRUE olekut
-  if (obstacle_active &&
-      (ros::Time::now() - getLastObstacle()) > ros::Duration(3.0))
-  {
-    obstacle_active = false;
-    ROS_INFO("[mower_logic] Radar obstacle cleared (3 s) → RESUME");
-    if (currentBehavior)
-      currentBehavior->requestContinue(pauseType::PAUSE_OBSTACLE);
-  }
-}
-
-
 void registerActions(std::string prefix, const std::vector<xbot_msgs::ActionInfo> &actions) {
   xbot_msgs::RegisterActionsSrv srv;
   srv.request.node_prefix = prefix;
@@ -423,6 +394,34 @@ bool isGpsGood() {
   const auto last_pose = pose_state_subscriber.getMessage();
   return last_pose.orientation_valid && last_pose.position_accuracy < last_config.max_position_accuracy &&
          (last_pose.flags & xbot_msgs::AbsolutePose::FLAG_SENSOR_FUSION_RECENT_ABSOLUTE_POSE);
+}
+
+void handleRadarDetection(bool obstacle_now)
+{
+  // Radar = TRUE  → kohe paus
+  if (obstacle_now) {
+    setLastObstacle(ros::Time::now());
+
+    if (!obstacle_active) {                 // esimene tuvastus
+      obstacle_active = true;
+      ROS_WARN("[mower_logic] Radar obstacle detected → PAUSE!");
+      mowerAllowed = false;                 // terad seisma
+      stopMoving();                         // kohene pidur
+      if (currentBehavior)
+        currentBehavior->requestPause(pauseType::PAUSE_OBSTACLE);
+    }
+    return;                                 // paus püsib
+  }
+
+  // 2) Radar = FALSE → vabasta alles 3 s pärast viimast TRUE olekut
+  if (obstacle_active &&
+      (ros::Time::now() - getLastObstacle()) > ros::Duration(3.0))
+  {
+    obstacle_active = false;
+    ROS_INFO("[mower_logic] Radar obstacle cleared (3 s) → RESUME");
+    if (currentBehavior)
+      currentBehavior->requestContinue(pauseType::PAUSE_OBSTACLE);
+  }
 }
 
 /// @brief Called every 0.5s, used to control BLADE motor via mower_enabled variable and stop any movement in case of
